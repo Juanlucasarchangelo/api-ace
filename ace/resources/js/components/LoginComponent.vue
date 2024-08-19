@@ -1,10 +1,9 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
+    <div class="container" style="height: 80vh;">
+        <div class="row justify-content-center align-items-center" style="height: 100%;">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Login</div>
-
                     <div class="card-body">
                         <form method="POST" action="">
                             <div class="row mb-3">
