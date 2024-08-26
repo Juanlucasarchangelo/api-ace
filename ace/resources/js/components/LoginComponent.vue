@@ -1,11 +1,12 @@
 <template>
-    <div class="container" style="height: 80vh;">
+    <div class="container-fluid" style="height: 80vh; background-image: url('build/assets/img/ace-login.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center bottom; height: 100vh;">
         <div class="row justify-content-center align-items-center" style="height: 100%;">
-            <div class="col-md-8">
+            <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header">Login</div>
+                    <div class="card-header"><img src="build/assets/img/Logo preto.png" height="30px" class="pe-3" alt="">Login</div>
                     <div class="card-body">
                         <form method="POST" action="">
+                            <input type="hidden" name="_token" :value="token_csrf">
                             <div class="row mb-3">
                                 <label for="email" class="col-md-4 col-form-label text-md-end">E-mail</label>
                                 <div class="col-md-6">
@@ -13,7 +14,6 @@
                                         autocomplete="email" autofocus>
                                 </div>
                             </div>
-
                             <div class="row mb-3">
                                 <label for="password" class="col-md-4 col-form-label text-md-end">Senha</label>
                                 <div class="col-md-6">
@@ -21,7 +21,6 @@
                                         autocomplete="current-password">
                                 </div>
                             </div>
-
                             <div class="row mb-3">
                                 <div class="col-md-6 offset-md-4">
                                     <div class="form-check">
@@ -33,7 +32,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
@@ -54,5 +52,9 @@
 </template>
 
 <script>
-
+export default{
+    props: [
+        'token_csrf'
+    ]
+}
 </script>
