@@ -1,9 +1,11 @@
 <template>
-    <div class="container-fluid" style="height: 80vh; background-image: url('build/assets/img/ace-login.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center bottom; height: 100vh;">
+    <div class="container-fluid"
+        style="height: 80vh; background-image: url('build/assets/img/ace-login.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center bottom; height: 100vh;">
         <div class="row justify-content-center align-items-center" style="height: 100%;">
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header"><img src="build/assets/img/Logo preto.png" height="30px" class="pe-3" alt="">Login</div>
+                    <div class="card-header"><img src="build/assets/img/Logo preto.png" height="30px" class="pe-3"
+                            alt="">Login</div>
                     <div class="card-body">
                         <form method="POST" action="">
                             <input type="hidden" name="_token" :value="token_csrf">
@@ -52,7 +54,7 @@
 </template>
 
 <script>
-export default{
+export default {
     props: [
         'token_csrf'
     ]

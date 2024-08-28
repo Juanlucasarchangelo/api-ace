@@ -24,12 +24,8 @@ class ResumoController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'nome' => 'required',
-                'sobrenome' => 'required',
-                'email' => 'required',
-                'cpf_cnpj' => 'required',
-                'telefone' => 'required',
-                'endereco' => 'required',
+                'briefing' => 'required',
+                'data_entrega' => 'required'
             ],
             [
                 'required' => 'O campo :attribute é obrigatório.'
@@ -42,12 +38,8 @@ class ResumoController extends Controller
 
         try {
             Resumo::create([
-                'nome' => $request->nome,
-                'sobrenome' => $request->sobrenome,
-                'email' => $request->email,
-                'cpf_cnpj' => $request->cpf_cnpj,
-                'telefone' => $request->telefone,
-                'enderecos_id' => $request->endereco,
+                'briefing' => $request->briefing,
+                'data_entrega' => $request->data_entrega
             ]);
 
             return response()->json(['mensagem' => 'Registro criado com sucesso.'], 200);

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
+use App\Models\Resumo;
+use App\Models\Site;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class PainelController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,6 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $sites = Site::all();
+        $clientes = Cliente::all();
+        $resumos = Resumo::all();
+
+        return view('painel', ['sites' => $sites, 'clientes' => $clientes, 'resumos' => $resumos]);
     }
 }
