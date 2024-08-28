@@ -10,3 +10,4 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/painel', [App\Http\Controllers\PainelController::class, 'index'])->name('painel');
+Route::get('/cadastrar-site', [App\Http\Controllers\CadastrarSite::class, 'index'])->name('cadastrar-site');

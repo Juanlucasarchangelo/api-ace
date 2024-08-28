@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sites', function (Blueprint $table) {
             $table->id();
             $table->foreignId('clientes_id')->constrained();
-            $table->foreignId('resumos_id')->constrained();
+            $table->foreignId('resumos_id')->constrained()->nullable();
             $table->string('dominio')->nullable();
             $table->string('acesso_email')->nullable();
             $table->string('email_profissional')->nullable();

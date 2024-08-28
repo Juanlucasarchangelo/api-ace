@@ -37,6 +37,12 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('cadastrar-site') }}">Cadastrar Site</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('cadastrar-site') }}">Cadastrar Cliente</a>
+                            </li>
                         </ul>
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ms-auto">
@@ -83,6 +89,14 @@
             @yield('content')
         </main>
     </div>
+
+    @if (isset(Auth::user()->name))
+        <footer class="bg-dark text-white text-center py-3">
+            <div class="container">
+                <p class="mb-0">&copy; 2024 ACE | Todos os direitos reservados.</p>
+            </div>
+        </footer>
+    @endif
 </body>
 
 </html>
