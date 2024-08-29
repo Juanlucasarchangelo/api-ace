@@ -71,7 +71,8 @@ class SiteController extends Controller
             $request->all(),
             [
                 'clientes_id' => 'required',
-                'resumos_id' => 'required'
+                'dominio' => 'required',
+                'hospedagem' => 'required'
             ],
             [
                 'required' => 'O campo :attribute é obrigatório.'
@@ -85,7 +86,7 @@ class SiteController extends Controller
         try {
             Site::create([
                 'clientes_id' => $request->clientes_id,
-                'resumos_id' => $request->resumos_id,
+                'resumos_id' => 1,
                 'dominio' => $request->dominio,
                 'acesso_email' => $request->acesso_email,
                 'email_profissional' => $request->email_profissional,
@@ -98,9 +99,11 @@ class SiteController extends Controller
                 'linktree' => $request->linktree,
                 'info_adicionais' => $request->info_adicionais,
                 'registro_dominio' => $request->registro_dominio,
+                'vencimento_dominio' => $request->vencimento_dominio,
                 'usuario_dominio' => $request->usuario_dominio,
                 'senha_dominio' => $request->senha_dominio,
                 'hospedagem' => $request->hospedagem,
+                'vencimento_hospedagem' => $request->vencimento_hospedagem,
                 'usuario_hospedagem' => $request->usuario_hospedagem,
                 'senha_hospedagem' => $request->senha_hospedagem,
                 'dns_primario' => $request->dns_primario,

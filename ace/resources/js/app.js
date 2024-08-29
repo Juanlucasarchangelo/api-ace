@@ -21,6 +21,12 @@ app.component('example-component', ExampleComponent);
 import LoginComponent from './components/LoginComponent.vue';
 app.component('login-component', LoginComponent);
 
+import FormComponent from './components/FormComponent.vue';
+app.component('form-component', FormComponent);
+
+import SuccessComponent from './components/SuccessComponent.vue';
+app.component('success-component', SuccessComponent);
+
 // app.component('login-component', require('./components/LoginComponent.vue').default); ********* Exemplo que não funciona *********
 
 

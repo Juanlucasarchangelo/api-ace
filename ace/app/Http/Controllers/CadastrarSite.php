@@ -19,11 +19,8 @@ class CadastrarSite extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        $clientes = Cliente::all();
-        $resumos = Resumo::all();
-
-        return view('cadastrar-site', ['clientes' => $clientes, 'resumos' => $resumos]);
+        return view('cadastrar-site');
     }
 }

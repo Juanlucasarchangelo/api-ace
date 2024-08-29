@@ -20,7 +20,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <div id="app">
         @if (isset(Auth::user()->name))
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm mb-3">
@@ -86,12 +86,14 @@
             </nav>
         @endif
         <main>
-            @yield('content')
+            <div class="flex-grow-1">
+                @yield('content')
+            </div>
         </main>
     </div>
 
     @if (isset(Auth::user()->name))
-        <footer class="bg-dark text-white text-center py-3">
+        <footer class="bg-dark text-white text-center py-3 mt-auto">
             <div class="container">
                 <p class="mb-0">&copy; 2024 ACE | Todos os direitos reservados.</p>
             </div>

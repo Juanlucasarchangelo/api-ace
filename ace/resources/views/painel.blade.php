@@ -34,7 +34,7 @@
         <div class="row d-flex justify-content-between pb-5">
             <div class="col">
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center py-3">
+                    <div class="card-header d-flex justify-content-between align-items-center pt-3">
                         <h4>Informações</h4>
                         <div class="dropdown">
                             <span class="btn rounded-pill p-2" data-bs-toggle="dropdown" aria-expanded="false"><i

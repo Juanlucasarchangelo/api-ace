@@ -14,7 +14,7 @@ class ResumoSeed extends Seeder
     public function run(): void
     {
         DB::table('resumos')->insert([
-            'briefing' => 'Apenas um teste de briefing, um cliente que quer um site que faça tudo que ele precisa sem precisar pagar caro para isso.',
+            'briefing' => 'Site sem briefing.',
             'data_entrega' => '12-12-2024'
         ]);
     }
