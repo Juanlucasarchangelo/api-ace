@@ -133,9 +133,9 @@ class SiteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Site $site)
+    public function show()
     {
-        //
+        return view('cadastrar-site');
     }
 
     /**

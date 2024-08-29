@@ -41,7 +41,7 @@
                                 <a class="nav-link" href="{{ route('cadastrar-site') }}">Cadastrar Site</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('cadastrar-site') }}">Cadastrar Cliente</a>
+                                <a class="nav-link" href="{{ route('cadastrar-cliente') }}">Cadastrar Cliente</a>
                             </li>
                         </ul>
                         <!-- Right Side Of Navbar -->

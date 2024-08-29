@@ -18,8 +18,10 @@ class EnderecoController extends Controller
 
             $listar = $enderecos->map(function ($endereco) {
                 return [
+                    'id' => $endereco->id,
                     'endereco' => $endereco->endereco,
                     'cidade' => $endereco->cidade,
+                    'numero' => $endereco->numero,
                     'bairro' => $endereco->bairro,
                     'complemento' => $endereco->complemento,
                     'cep' => $endereco->cep

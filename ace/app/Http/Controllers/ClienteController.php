@@ -54,7 +54,7 @@ class ClienteController extends Controller
                 'email' => 'required',
                 'cpf_cnpj' => 'required',
                 'telefone' => 'required',
-                'endereco' => 'required',
+                'enderecos_id' => 'required',
             ],
             [
                 'required' => 'O campo :attribute é obrigatório.'
@@ -72,7 +72,7 @@ class ClienteController extends Controller
                 'email' => $request->email,
                 'cpf_cnpj' => $request->cpf_cnpj,
                 'telefone' => $request->telefone,
-                'enderecos_id' => $request->endereco,
+                'enderecos_id' => $request->enderecos_id,
             ]);
 
             return response()->json(['mensagem' => 'Registro criado com sucesso.'], 200);
@@ -94,7 +94,7 @@ class ClienteController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        //
+        return view('cadastrar-cliente');
     }
 
     /**
