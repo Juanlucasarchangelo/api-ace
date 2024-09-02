@@ -27,6 +27,12 @@ app.component('form-component', FormComponent);
 import SuccessComponent from './components/SuccessComponent.vue';
 app.component('success-component', SuccessComponent);
 
+import ModalInfoComponent from './components/ModalInfoComponent.vue';
+app.component('modal-info-component', ModalInfoComponent);
+
+import TableComponent from './components/TableComponent.vue';
+app.component('table-component', TableComponent);
+
 // app.component('login-component', require('./components/LoginComponent.vue').default); ********* Exemplo que não funciona *********
 
 

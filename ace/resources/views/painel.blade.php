@@ -39,54 +39,22 @@
                         <div class="dropdown">
                             <span class="btn rounded-pill p-2" data-bs-toggle="dropdown" aria-expanded="false"><i
                                     class="bi bi-three-dots-vertical"></i></span>
-
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="#">Excluir Sessão</a></li>
+                                <li><a class="dropdown-item" href="#">Desabilitar</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="card-body">
-                        <table class="table table-hover pb-5">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Cliente</th>
-                                    <th scope="col">Venc. Host</th>
-                                    <th scope="col">Venc. Domínio</th>
-                                    <th scope="col">site</th>
-                                    <th scope="col">Ações</th>
-                                </tr>
-                            </thead>
-                            @foreach ($sites as $site)
-                                <tbody>
-                                    <tr>
-                                        <td class="row d-flex justify-content-between">
-                                            <span>{{ $site->clientes->nome }} {{ $site->clientes->sobrenome }}</span>
-                                            <span>{{ $site->clientes->email }}</span>
-                                        </td>
-                                        <td> {{ $site->vencimento_hospedagem }} </td>
-                                        <td> {{ $site->vencimento_dominio }} </td>
-                                        <td><a href="https://{{ $site->dominio }}" target="_blank">{{ $site->dominio }}</a>
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-outline-info">
-                                                <i class="bi bi-pencil-square"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-outline-warning mx-3">
-                                                <i class="bi bi-ban"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-outline-danger">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            @endforeach
-                        </table>
+                        <table-component token_csrf="{{ @csrf_token() }}"></table-component>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    {{-- <div class="modal fade" id="editar" tabindex="-1" aria-labelledby="editar" aria-hidden="true">
+        <modal-info-component token_csrf="{{ @csrf_token() }}"></modal-info-component>
+    </div> --}}
 @endsection
