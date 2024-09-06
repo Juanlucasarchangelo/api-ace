@@ -6,8 +6,38 @@ use App\Models\Site;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+use function PHPSTORM_META\map;
+
 class SiteController extends Controller
 {
+    /**
+     * Redireciona para a rota desejada.
+     */
+    public function getSitesById(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'id' => 'required'
+            ],
+            [
+                'required' => 'O campo :attribute é obrigatório.'
+            ]
+        );
+
+        if ($validator->fails()) {
+            return response()->json(['tipo' => 'erro', 'mensagem' => 'Parâmetros inválidos na requisição.', 'erros' => $validator->errors()->all(), 'codigo' => 422], 422);
+        }
+
+        try {
+            $sites = Site::where('id', $request->id)->with('clientes:id,nome,sobrenome,email,cpf_cnpj,telefone', 'resumos:id,briefing,data_entrega')->first();
+            
+            return response()->json(['tipo' => 'sucesso', 'mensagem' => 'Registro encontrado.', 'info' => $sites], 200);
+        } catch (\Exception $e) {
+            return response()->json(['tipo' => 'erro', 'mensagem' => 'Erro ao buscar sites por ID.', 'erro' => $e->getMessage()], 500);
+        }
+    }
+
     /**
      * Display a listing of the resource.
      */

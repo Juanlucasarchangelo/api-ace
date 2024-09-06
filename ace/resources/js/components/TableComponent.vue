@@ -19,7 +19,7 @@
                 <td>{{ site.vencimento_dominio }}</td>
                 <td><a :href="'https://' + site.dominio" target="_blank">{{ site.dominio }}</a></td>
                 <td>
-                    <button type="button" class="btn btn-outline-info me-3" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-outline-info me-3" @click="getId(site.id)" data-bs-toggle="modal"
                         data-bs-target="#editar">
                         <i class="bi bi-pencil-square"></i>
                     </button>
@@ -53,7 +53,7 @@
 
     <!-- Modal Informações -->
     <div class="modal fade" id="editar" tabindex="-1" aria-labelledby="editar" aria-hidden="true">
-        <modal-info-component token_csrf="{{ @csrf_token() }}" :sites="sites"></modal-info-component>
+        <modal-info-component token_csrf="{{ @csrf_token() }}" :id="id"></modal-info-component>
     </div>
 
 </template>
@@ -63,7 +63,7 @@ export default {
     data() {
         return {
             sites: [],
-
+            id: '',
             errors: []
         }
     },
@@ -84,6 +84,9 @@ export default {
                 .catch(errors => {
                     console.log(errors);
                 });
+        },
+        getId(id){
+            this.id = id
         }
     }
 }

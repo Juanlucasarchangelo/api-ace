@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form @submit="create">
+                <form @submit="update">
                     <input type="hidden" :value="token_csrf" name="token_csrf">
                     <div class="row d-flex">
                         <div class="col-4">
@@ -57,7 +57,124 @@
                                             endereco.numero + ' - ' + endereco.cep }}
                                     </option>
                                 </select>
-                                <label for="endereco_form">Selecione o endereço.</label>
+                                <label for="endereco_form">Selecione o responsavel.</label>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="d-flex justify-content-between pt-4">Briefing <h6 class="text-success">Data prevista para
+                            entrega: {{ data_entrega }}</h6>
+                    </h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <textarea class="form-control" v-model="briefing" placeholder=" "
+                                        id="briefing" style="height: 100px"></textarea>
+                                    <label for="briefing">Descrição</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="d-flex justify-content-between pt-4">Informações de Acesso</h4>
+                    <hr>
+                    <div class="row d-flex">
+                        <div class="col-6">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="dominio" id="dominio" placeholder=" ">
+                                    <label for="dominio">Domínio</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="acesso_email" id="acesso_email" placeholder=" ">
+                                    <label for="acesso_email">Acesso e-mail</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <textarea class="form-control" v-model="email_profissional" placeholder=""
+                                        id="email_profissional" style="height: 100px"></textarea>
+                                    <label for="email_profissional">Emails profissionais</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex">
+                        <div class="col-3">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="drive" id="drive" placeholder=" ">
+                                    <label for="drive">Drive</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="youtube" id="youtube" placeholder=" ">
+                                    <label for="youtube">Youtube</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="facebook" id="facebook" placeholder=" ">
+                                    <label for="facebook">Facebook</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="linkedin" id="linkedin" placeholder=" ">
+                                    <label for="linkedin">LinkedIn</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex">
+                        <div class="col-4">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="gmail" id="gmail" placeholder=" ">
+                                    <label for="gmail">Gmail</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="instagram" id="instagram" placeholder=" ">
+                                    <label for="instagram">Instagram</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="linktree" id="faclinktreeebook" placeholder=" ">
+                                    <label for="linktree">Linktree</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <textarea class="form-control" v-model="info_adicionais" placeholder=" "
+                                        id="info_adicionais" style="height: 100px"></textarea>
+                                    <label for="info_adicionais">Informações adicionais</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -75,15 +192,107 @@
 export default {
     data() {
         return {
-            // Outras propriedades
+            sites: [],
+            nome: '',
+            sobrenome: '',
+            email: '',
+            cpf_cnpj: '',
+            telefone: '',
+            briefing: '',
+            data_entrega: '',
+            dominio: '',
+            acesso_email: '',
+            email_profissional: '',
+            drive: '',
+            youtube: '',
+            facebook: '',
+            linkedin: '',
+            gmail: '',
+            instagram: '',
+            linktree: '',
+            info_adicionais: '',
+            registro_dominio: '',
+            usuario_dominio: '',
+            senha_dominio: '',
+            hospedagem: '',
+            usuario_hospedagem: '',
+            senha_hospedagem: '',
+            dns_primario: '',
+            dns_secundario: '',
+            ftp: '',
+            usuario_ftp: '',
+            senha_ftp: '',
+            link_site_adm: '',
+            usuario_site_adm: '',
+            senha_site_adm: ''
         };
+    },
+    watch: {
+        id(newId) {
+            if (newId) {
+                this.getSitesClientesById();
+            }
+        }
+    },
+    mounted() {
+        if (this.id) {
+            this.getSitesClientesById();
+        }
     },
     props: [
         'token_csrf',
-        'sites'
+        'id'
     ],
     methods: {
-        // Métodos do componente
+        getSitesClientesById() {
+            let url = '/api/listar/site-id?id=' + this.id
+
+            axios.get(url)
+                .then(response => {
+                    this.sites = response.data;
+                    this.atribuiVar()
+                })
+                .catch(errors => {
+                    console.log(errors);
+                });
+        },
+        update() {
+            console.log('Vou criar a função de atualizar');
+        },
+        atribuiVar() {
+            this.nome = this.sites.info.clientes.nome;
+            this.sobrenome = this.sites.info.clientes.sobrenome;
+            this.email = this.sites.info.clientes.email;
+            this.cpf_cnpj = this.sites.info.clientes.cpf_cnpj;
+            this.telefone = this.sites.info.clientes.telefone;
+            this.briefing = this.sites.info.resumos.briefing;
+            this.data_entrega = this.sites.info.resumos.data_entrega;
+            this.dominio = this.sites.info.dominio;
+            this.acesso_email = this.sites.info.acesso_email;
+            this.email_profissional = this.sites.info.email_profissional;
+            dthis.drive = this.sites.info.drive;
+            this.youtube = this.sites.info.youtube;
+            this.facebook = this.sites.info.facebook;
+            this.linkedin = this.sites.info.linkedin;
+            this.gmail = this.sites.info.gmail;
+            this.instagram = this.sites.info.instagram;
+            this.linktree = this.sites.info.linktree;
+            this.info_adicionais = this.sites.info.info_adicionais;
+            this.registro_dominio = this.sites.info.registro_dominio;
+            this.usuario_dominio = this.sites.info.usuario_dominio;
+            this.senha_dominio = this.sites.info.senha_dominio;
+            this.hospedagem = this.sites.info.hospedagem;
+            this.usuario_hospedagem = this.sites.info.usuario_hospedagem;
+            this.senha_hospedagem = this.sites.info.senha_hospedagem;
+            this.dns_primario = this.sites.info.dns_primario;
+            this.dns_secundario = this.sites.info.dns_secundario;
+            this.ftp = this.sites.info.ftp;
+            this.usuario_ftp = this.sites.info.usuario_ftp;
+            this.senha_ftp = this.sites.info.senha_ftp;
+            this.link_site_adm = this.sites.info.link_site_adm;
+            this.usuario_site_adm = this.sites.info.usuario_site_adm;
+            this.senha_site_adm = this.sites.info.senha_site_adm;
+        }
     }
 }
 </script>

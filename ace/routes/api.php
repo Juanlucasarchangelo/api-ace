@@ -14,6 +14,7 @@ Route::get('/user', function (Request $request) {
 Route::get('/listar-cliente', [ClienteController::class, 'index']);
 Route::get('/listar-endereco', [EnderecoController::class, 'index']);
 Route::get('/listar-site', [SiteController::class, 'index']);
+Route::get('/listar/site-id', [SiteController::class, 'getSitesById']);
 
 Route::post('/cadastrar-cliente', [ClienteController::class, 'create']);
 Route::post('/cadastrar-endereco', [EnderecoController::class, 'create']);
