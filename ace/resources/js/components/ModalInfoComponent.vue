@@ -6,25 +6,27 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form @submit.prevent="updateSiteById">
+                <form>
                     <input type="hidden" :value="token_csrf" name="token_csrf">
                     <div class="row d-flex">
                         <div class="col-4">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="nome" v-model="nome" placeholder=" ">
+                                <input type="text" class="form-control" id="nome" v-model="nome" placeholder=" "
+                                    disabled>
                                 <label for="nome">Nome</label>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="sobrenome" v-model="sobrenome"
-                                    placeholder=" ">
+                                    placeholder=" " disabled>
                                 <label for="sobrenome">Sobrenome</label>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="form-floating">
-                                <input type="email" class="form-control" id="email" v-model="email" placeholder=" ">
+                                <input type="email" class="form-control" id="email" v-model="email" placeholder=" "
+                                    disabled>
                                 <label for="email">E-mail</label>
                             </div>
                         </div>
@@ -32,15 +34,15 @@
                     <div class="row d-flex">
                         <div class="col-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="cpf_cnpj" v-model="cpf_cnpj"
-                                    placeholder=" ">
+                                <input type="text" class="form-control" id="cpf_cnpj" v-model="cpf_cnpj" placeholder=" "
+                                    disabled>
                                 <label for="cpf_cnpj">CPF/CNPJ</label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="telefone" v-model="telefone"
-                                    placeholder=" ">
+                                <input type="text" class="form-control" id="telefone" v-model="telefone" placeholder=" "
+                                    disabled>
                                 <label for="telefone">Telefone</label>
                             </div>
                         </div>
@@ -70,7 +72,7 @@
                             <div class="form-floating pb-3">
                                 <div class="form-floating">
                                     <textarea class="form-control" v-model="briefing" placeholder=" " id="briefing"
-                                        style="height: 100px"></textarea>
+                                        style="height: 100px" disabled></textarea>
                                     <label for="briefing">Descrição</label>
                                 </div>
                             </div>
@@ -330,11 +332,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-between">
-                        <button type="reset" class="btn btn-outline-primary">Limpar</button>
-                        <button type="submit" class="btn btn-success">Salvar</button>
-                    </div>
                 </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <success-component :acao="retorno" :errors="errors"></success-component>
+                <p></p>
+                <button type="submit" class="btn btn-success" @click="updateSiteById">Salvar</button>
             </div>
         </div>
     </div>
@@ -378,7 +381,8 @@ export default {
             senha_ftp: '',
             link_site_adm: '',
             usuario_site_adm: '',
-            senha_site_adm: ''
+            senha_site_adm: '',
+            retorno: '',
         };
     },
     watch: {
@@ -458,9 +462,11 @@ export default {
             })
                 .then(response => {
                     console.log('Site atualizado com sucesso!', response);
+                    this.retorno = 'success';
                 })
                 .catch(error => {
                     console.log('Erro ao atualizar o site:', error);
+                    this.retorno = 'error';
                 });
         },
         atribuiVar() {
