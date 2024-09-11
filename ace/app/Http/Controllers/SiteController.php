@@ -31,7 +31,7 @@ class SiteController extends Controller
 
         try {
             $sites = Site::where('id', $request->id)->with('clientes:id,nome,sobrenome,email,cpf_cnpj,telefone', 'resumos:id,briefing,data_entrega')->first();
-            
+
             return response()->json(['tipo' => 'sucesso', 'mensagem' => 'Registro encontrado.', 'info' => $sites], 200);
         } catch (\Exception $e) {
             return response()->json(['tipo' => 'erro', 'mensagem' => 'Erro ao buscar sites por ID.', 'erro' => $e->getMessage()], 500);
@@ -181,9 +181,53 @@ class SiteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Site $site)
+    public function update(Request $request)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'site_id' => 'required'
+            ],
+            [
+                'required' => 'O campo :attribute é obrigatório.'
+            ]
+        );
+
+        if ($validator->fails()) {
+            return response()->json(['erros' => $validator->errors()->all()], 422);
+        }
+
+        Site::where('id', $request->site_id)->update([
+            'dominio' => $request->dominio,
+            'acesso_email' => $request->acesso_email,
+            'email_profissional' => $request->email_profissional,
+            'drive' => $request->drive,
+            'youtube' => $request->youtube,
+            'facebook' => $request->facebook,
+            'linkedin' => $request->linkedin,
+            'gmail' => $request->gmail,
+            'instagram' => $request->instagram,
+            'linktree' => $request->linktree,
+            'info_adicionais' => $request->info_adicionais,
+            'registro_dominio' => $request->registro_dominio,
+            'vencimento_dominio' => $request->vencimento_dominio,
+            'usuario_dominio' => $request->usuario_dominio,
+            'senha_dominio' => $request->senha_dominio,
+            'hospedagem' => $request->hospedagem,
+            'vencimento_hospedagem' => $request->vencimento_hospedagem,
+            'usuario_hospedagem' => $request->usuario_hospedagem,
+            'senha_hospedagem' => $request->senha_hospedagem,
+            'dns_primario' => $request->dns_primario,
+            'dns_secundario' => $request->dns_secundario,
+            'ftp' => $request->ftp,
+            'usuario_ftp' => $request->usuario_ftp,
+            'senha_ftp' => $request->senha_ftp,
+            'link_site_adm' => $request->link_site_adm,
+            'usuario_site_adm' => $request->usuario_site_adm,
+            'senha_site_adm' => $request->senha_site_adm,
+        ]);
+
+        return response()->json(['tipo' =>  'sucesso', 'message' => 'Site atualizado com sucesso!']);
     }
 
     /**

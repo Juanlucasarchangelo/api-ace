@@ -11,12 +11,23 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/listar-cliente', [ClienteController::class, 'index']);
-Route::get('/listar-endereco', [EnderecoController::class, 'index']);
-Route::get('/listar-site', [SiteController::class, 'index']);
-Route::get('/listar/site-id', [SiteController::class, 'getSitesById']);
+Route::prefix('listar')->group(function () {
+    Route::get('/cliente', [ClienteController::class, 'index']);
+    Route::get('/endereco', [EnderecoController::class, 'index']);
+    Route::get('/site', [SiteController::class, 'index']);
+    Route::get('/site-id', [SiteController::class, 'getSitesById']);
+});
 
-Route::post('/cadastrar-cliente', [ClienteController::class, 'create']);
-Route::post('/cadastrar-endereco', [EnderecoController::class, 'create']);
-Route::post('/cadastrar-site', [SiteController::class, 'create']);
-Route::post('/cadastrar-resumo', [ResumoController::class, 'create']);
+Route::prefix('cadastrar')->group(function () {
+    Route::post('/cliente', [ClienteController::class, 'create']);
+    Route::post('/endereco', [EnderecoController::class, 'create']);
+    Route::post('/site', [SiteController::class, 'create']);
+    Route::post('/resumo', [ResumoController::class, 'create']);
+});
+
+Route::prefix('editar')->group(function () {
+    Route::post('/cliente', [ClienteController::class, 'create']);
+    Route::post('/endereco', [EnderecoController::class, 'create']);
+    Route::post('/site', [SiteController::class, 'update']);
+    Route::post('/resumo', [ResumoController::class, 'create']);
+});

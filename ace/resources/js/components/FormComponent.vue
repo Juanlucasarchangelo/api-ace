@@ -128,7 +128,7 @@ export default {
     ],
     methods: {
         getClientes() {
-            let url = '/api/listar-cliente'
+            let url = '/api/listar/cliente'
             axios.get(url)
                 .then(response => {
                     this.clientes = response.data;
@@ -138,7 +138,7 @@ export default {
                 });
         },
         getEnderecos() {
-            let url = '/api/listar-endereco'
+            let url = '/api/listar/endereco'
             axios.get(url)
                 .then(response => {
                     this.enderecos = response.data;
@@ -154,7 +154,7 @@ export default {
             let data = {};
 
             if (this.tabela == 'site') {
-                url = '/api/cadastrar-site';
+                url = '/api/cadastrar/site';
                 data = {
                     clientes_id: this.responsaveis,
                     dominio: this.dominio,
@@ -162,7 +162,7 @@ export default {
                     _token: this.token_csrf
                 };
             } else if (this.tabela == 'cliente') {
-                url = '/api/cadastrar-cliente';
+                url = '/api/cadastrar/cliente';
                 data = {
                     nome: this.nome,
                     sobrenome: this.sobrenome,

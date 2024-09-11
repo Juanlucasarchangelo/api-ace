@@ -53,7 +53,7 @@
 
     <!-- Modal Informações -->
     <div class="modal fade" id="editar" tabindex="-1" aria-labelledby="editar" aria-hidden="true">
-        <modal-info-component token_csrf="{{ @csrf_token() }}" :id="id"></modal-info-component>
+        <modal-info-component :token_csrf="token_csrf" :id="id"></modal-info-component>
     </div>
 
 </template>
@@ -75,7 +75,7 @@ export default {
     ],
     methods: {
         getSitesClientes() {
-            let url = '/api/listar-site'
+            let url = '/api/listar/site'
 
             axios.get(url)
                 .then(response => {
