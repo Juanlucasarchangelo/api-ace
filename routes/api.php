@@ -31,3 +31,10 @@ Route::prefix('editar')->group(function () {
     Route::post('/site', [SiteController::class, 'update']);
     Route::post('/resumo', [ResumoController::class, 'create']);
 });
+
+Route::prefix('excluir')->group(function () {
+    Route::post('/cliente', [ClienteController::class, 'destroy']);
+    Route::post('/endereco', [EnderecoController::class, 'destroy']);
+    Route::post('/site', [SiteController::class, 'destroy']);
+    Route::post('/resumo', [ResumoController::class, 'destroy']);
+});

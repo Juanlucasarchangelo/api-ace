@@ -19,12 +19,10 @@
                 <td>{{ site.vencimento_dominio }}</td>
                 <td><a :href="'https://' + site.dominio" target="_blank">{{ site.dominio }}</a></td>
                 <td>
-                    <button type="button" class="btn btn-outline-info me-3" @click="getId(site.id)" data-bs-toggle="modal"
-                        data-bs-target="#editar">
+                    <button type="button" class="btn btn-outline-info me-3" @click="getId(site.id)" data-bs-toggle="modal" data-bs-target="#editar">
                         <i class="bi bi-pencil-square"></i>
                     </button>
-                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="excluir"
-                        data-bs-target="#excluir">
+                    <button type="button" class="btn btn-outline-danger" @click="getId(site.id)" data-bs-toggle="modal" data-bs-target="#excluir">
                         <i class="bi bi-trash"></i>
                     </button>
                 </td>
@@ -56,6 +54,11 @@
         <modal-info-component :token_csrf="token_csrf" :id="id"></modal-info-component>
     </div>
 
+    <!-- Modal Informações -->
+    <div class="modal fade" id="excluir" tabindex="-1" aria-labelledby="excluir" aria-hidden="true">
+        <delete-component :token_csrf="token_csrf" :id="id"></delete-component>
+    </div>
+
 </template>
 
 <script>
@@ -85,7 +88,7 @@ export default {
                     console.log(errors);
                 });
         },
-        getId(id){
+        getId(id) {
             this.id = id
         }
     }

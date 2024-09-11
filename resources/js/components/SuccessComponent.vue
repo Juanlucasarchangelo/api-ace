@@ -9,7 +9,7 @@
             Erro desconhecido.
         </div>
         <div v-if="acao === 'success'">
-            <strong>Sucesso!</strong> O registro foi criado com sucesso.
+            <strong>Sucesso!</strong> Ação realizada com sucesso.
         </div>
     </div>
 </template>

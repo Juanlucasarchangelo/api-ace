@@ -233,8 +233,29 @@ class SiteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Site $site)
+    public function destroy(Request $request)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'site_id' => 'required'
+            ],
+            [
+                'required' => 'O campo :attribute é obrigatório.'
+            ]
+        );
+
+        if ($validator->fails()) {
+            return response()->json(['erros' => $validator->errors()->all()], 422);
+        }
+
+        $excluir = Site::where('id', $request->site_id)->delete();
+
+        if($excluir == 0){
+            return response()->json(['tipo' =>  'erro', 'message' => 'Id do site não encontrado.']);
+        }
+
+        return response()->json(['tipo' =>  'sucesso', 'message' => 'Site atualizado com sucesso!']);
+
     }
 }
