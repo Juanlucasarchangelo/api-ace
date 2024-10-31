@@ -19,9 +19,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-floating pb-3">
+            <div class="row d-flex">
+                <div class="col-6">
+                    <div class="form-floating mb-3">
                         <select class="form-select" id="responsaveis" v-model="responsaveis"
                             aria-label="Floating label select example">
                             <option selected>Responsáveis</option>
@@ -30,8 +30,21 @@
                                 {{ cliente.nome }}
                             </option>
                         </select>
-
                         <label for="responsaveis">Selecione o dono do site</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-floating">
+                        <input type="date" class="form-control" id="data_entrega" v-model="data_entrega">
+                        <label for="data_entrega">Data Entrega</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-floating pb-3">
+                        <textarea class="form-control" name="briefing" id="briefing" v-model="briefing"></textarea>
+                        <label for="briefing">Briefing do site...</label>
                     </div>
                 </div>
             </div>
@@ -104,6 +117,8 @@ export default {
             dominio: '',
             hospedagem: '',
             responsaveis: '',
+            briefing: '',
+            data_entrega: '',
             retorno: '',
 
             // Cliente
@@ -159,6 +174,8 @@ export default {
                     clientes_id: this.responsaveis,
                     dominio: this.dominio,
                     hospedagem: this.hospedagem,
+                    data_entrega: this.data_entrega,
+                    briefing: this.briefing,
                     _token: this.token_csrf
                 };
             } else if (this.tabela == 'cliente') {
@@ -194,6 +211,8 @@ export default {
             this.sobrenome = '',
             this.email = '',
             this.cpf_cnpj = '',
+            this.briefing = '',
+            this.data_entrega = '',
             this.telefone = ''
         }
     }

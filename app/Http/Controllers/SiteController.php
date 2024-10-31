@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Resumo;
 use App\Models\Site;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -116,9 +117,14 @@ class SiteController extends Controller
         }
 
         try {
+            $resumo = Resumo::create([
+                'briefing' => $request->briefing,
+                'data_entrega' => $request->data_entrega
+            ]);
+
             Site::create([
                 'clientes_id' => $request->clientes_id,
-                'resumos_id' => 1,
+                'resumos_id' => $resumo->id,
                 'dominio' => $request->dominio,
                 'acesso_email' => $request->acesso_email,
                 'email_profissional' => $request->email_profissional,
