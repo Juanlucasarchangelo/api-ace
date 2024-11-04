@@ -1,13 +1,9 @@
 <template>
     <table class="table table-hover pb-5">
         <thead>
-            <tr>
-                <th scope="col">Cliente</th>
-                <th scope="col">Venc. Host</th>
-                <th scope="col">Venc. Domínio</th>
-                <th scope="col">site</th>
-                <th scope="col">Ações</th>
-            </tr>
+            <th v-for="(coluna, index) in colunas" :key="index" scope="col">
+                {{ coluna }}
+            </th>
         </thead>
         <tbody>
             <tr v-if="sites && sites.mensagem" v-for="site in sites.mensagem">
@@ -19,10 +15,12 @@
                 <td>{{ site.vencimento_dominio }}</td>
                 <td><a :href="'https://' + site.dominio" target="_blank">{{ site.dominio }}</a></td>
                 <td>
-                    <button type="button" class="btn btn-outline-info me-3" @click="getId(site.id)" data-bs-toggle="modal" data-bs-target="#editar">
+                    <button type="button" class="btn btn-outline-info me-3" @click="getId(site.id)"
+                        data-bs-toggle="modal" data-bs-target="#editar">
                         <i class="bi bi-pencil-square"></i>
                     </button>
-                    <button type="button" class="btn btn-outline-danger" @click="getId(site.id)" data-bs-toggle="modal" data-bs-target="#excluir">
+                    <button type="button" class="btn btn-outline-danger" @click="getId(site.id)" data-bs-toggle="modal"
+                        data-bs-target="#excluir">
                         <i class="bi bi-trash"></i>
                     </button>
                 </td>
@@ -74,6 +72,7 @@ export default {
         this.getSitesClientes()
     },
     props: [
+        'colunas',
         'token_csrf'
     ],
     methods: {

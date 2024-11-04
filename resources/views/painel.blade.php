@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <table-component token_csrf="{{ @csrf_token() }}"></table-component>
+                        <table-component :colunas="['Cliente', 'Venc. Host', 'Venc. Domínio', 'Site', 'Ações']" token_csrf="{{ @csrf_token() }}"></table-component>
                     </div>
                 </div>
             </div>
