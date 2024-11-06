@@ -92,9 +92,9 @@ class ClienteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Cliente $cliente)
+    public function show()
     {
-        return view('cadastrar-cliente');
+        return view('cliente/listar-cliente');
     }
 
     /**

@@ -6,14 +6,20 @@ use App\Models\Resumo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ResumoController extends Controller
+class BriefingController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        try {
+            $briefings = Resumo::all()->toArray();
+
+            return response()->json(['mensagem' => $briefings], 200);
+        } catch (\Exception $e) {
+            return response()->json(['mensagem' => 'Erro ao processar a requisição.', 'erro' => $e->getMessage()], 500);
+        }
     }
 
     /**

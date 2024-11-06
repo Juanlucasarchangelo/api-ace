@@ -10,21 +10,21 @@
                 <div class="row d-flex">
                     <div class="col-4">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="nome" v-model="nome" placeholder=" " disabled>
+                            <input type="text" class="form-control" id="nome" v-model="nome" placeholder=" " :disabled="acao !== 'cliente'">
                             <label for="nome">Nome</label>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="form-floating">
                             <input type="text" class="form-control" id="sobrenome" v-model="sobrenome" placeholder=" "
-                                disabled>
+                            :disabled="acao !== 'cliente'">
                             <label for="sobrenome">Sobrenome</label>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="form-floating">
                             <input type="email" class="form-control" id="email" v-model="email" placeholder=" "
-                                disabled>
+                                :disabled="acao !== 'cliente'">
                             <label for="email">E-mail</label>
                         </div>
                     </div>
@@ -33,14 +33,14 @@
                     <div class="col-6">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="cpf_cnpj" v-model="cpf_cnpj" placeholder=" "
-                                disabled>
+                                :disabled="acao !== 'cliente'">
                             <label for="cpf_cnpj">CPF/CNPJ</label>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-floating">
                             <input type="text" class="form-control" id="telefone" v-model="telefone" placeholder=" "
-                                disabled>
+                                :disabled="acao !== 'cliente'">
                             <label for="telefone">Telefone</label>
                         </div>
                     </div>
@@ -70,260 +70,264 @@
                         <div class="form-floating pb-3">
                             <div class="form-floating">
                                 <textarea class="form-control" v-model="briefing" placeholder=" " id="briefing"
-                                    style="height: 100px" disabled></textarea>
+                                    style="height: 100px" :disabled="acao !== 'cliente'"></textarea>
                                 <label for="briefing">Descrição</label>
                             </div>
                         </div>
                     </div>
                 </div>
-                <h4 class="d-flex justify-content-between pt-4">Informações de Acesso</h4>
-                <hr>
-                <div class="row d-flex">
-                    <div class="col-6">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="dominio" id="dominio" placeholder=" ">
-                                <label for="dominio">Domínio</label>
+                <div v-if="acao === 'site'">
+                    <h4 class=" d-flex justify-content-between pt-4">Informações de Acesso</h4>
+                    <hr>
+                    <div class="row d-flex">
+                        <div class="col-6">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="dominio" id="dominio"
+                                        placeholder=" ">
+                                    <label for="dominio">Domínio</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="acesso_email" id="acesso_email"
+                                        placeholder=" ">
+                                    <label for="acesso_email">Acesso e-mail</label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="acesso_email" id="acesso_email"
-                                    placeholder=" ">
-                                <label for="acesso_email">Acesso e-mail</label>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <textarea class="form-control" v-model="email_profissional" placeholder=""
+                                        id="email_profissional" style="height: 100px"></textarea>
+                                    <label for="email_profissional">Emails profissionais</label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <textarea class="form-control" v-model="email_profissional" placeholder=""
-                                    id="email_profissional" style="height: 100px"></textarea>
-                                <label for="email_profissional">Emails profissionais</label>
+                    <div class="row d-flex">
+                        <div class="col-3">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="drive" id="drive" placeholder=" ">
+                                    <label for="drive">Drive</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="youtube" id="youtube"
+                                        placeholder=" ">
+                                    <label for="youtube">Youtube</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="facebook" id="facebook"
+                                        placeholder=" ">
+                                    <label for="facebook">Facebook</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="linkedin" id="linkedin"
+                                        placeholder=" ">
+                                    <label for="linkedin">LinkedIn</label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row d-flex">
-                    <div class="col-3">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="drive" id="drive" placeholder=" ">
-                                <label for="drive">Drive</label>
+                    <div class="row d-flex">
+                        <div class="col-4">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="gmail" id="gmail" placeholder=" ">
+                                    <label for="gmail">Gmail</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="instagram" id="instagram"
+                                        placeholder=" ">
+                                    <label for="instagram">Instagram</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="linktree" id="faclinktreeebook"
+                                        placeholder=" ">
+                                    <label for="linktree">Linktree</label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="youtube" id="youtube" placeholder=" ">
-                                <label for="youtube">Youtube</label>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <textarea class="form-control" v-model="info_adicionais" placeholder=" "
+                                        id="info_adicionais" style="height: 100px"></textarea>
+                                    <label for="info_adicionais">Informações adicionais</label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="facebook" id="facebook"
-                                    placeholder=" ">
-                                <label for="facebook">Facebook</label>
+                    <h4 class="d-flex justify-content-between pt-4"> Informações de Domínio <h6 class="text-success">
+                            Vencimento do Domínio: {{ vencimento_dominio }}</h6>
+                    </h4>
+                    <hr>
+                    <div class="row d-flex">
+                        <div class="col-4">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="registro_dominio"
+                                        id="registro_dominio" placeholder=" ">
+                                    <label for="registro_dominio">Local de Registro de Domínio</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="usuario_dominio"
+                                        id="usuario_dominio" placeholder=" ">
+                                    <label for="usuario_dominio">Usuário</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="senha_dominio" id="senha_dominio"
+                                        placeholder=" ">
+                                    <label for="senha_dominio">Senha</label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="linkedin" id="linkedin"
-                                    placeholder=" ">
-                                <label for="linkedin">LinkedIn</label>
+                    <h4 class="d-flex justify-content-between pt-4"> Informações de Hospedagem <h6 class="text-success">
+                            Vencimento da Hospedagem: {{ vencimento_hospedagem }}</h6>
+                    </h4>
+                    <hr>
+                    <div class="row d-flex">
+                        <div class="col-4">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="hospedagem" id="hospedagem"
+                                        placeholder=" ">
+                                    <label for="hospedagem">Local de Registro de Hospedagem</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="usuario_hospedagem"
+                                        id="usuario_hospedagem" placeholder=" ">
+                                    <label for="usuario_hospedagem">Usuário</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="senha_hospedagem"
+                                        id="senha_hospedagem" placeholder=" ">
+                                    <label for="senha_hospedagem">Senha</label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row d-flex">
-                    <div class="col-4">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="gmail" id="gmail" placeholder=" ">
-                                <label for="gmail">Gmail</label>
+                    <div class="row d-flex">
+                        <div class="col-6">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="dns_primario" id="dns_primario"
+                                        placeholder=" ">
+                                    <label for="dns_primario">DNS Primario</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="dns_secundario" id="dns_secundario"
+                                        placeholder=" ">
+                                    <label for="dns_secundario">DNS Secundaário</label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="instagram" id="instagram"
-                                    placeholder=" ">
-                                <label for="instagram">Instagram</label>
+                    <div class="row d-flex">
+                        <div class="col-4">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="ftp" id="ftp" placeholder=" ">
+                                    <label for="ftp">FTP Url</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="usuario_ftp" id="usuario_ftp"
+                                        placeholder=" ">
+                                    <label for="usuario_ftp">Usuário</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="senha_ftp" id="senha_ftp"
+                                        placeholder=" ">
+                                    <label for="senha_ftp">Senha</label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="linktree" id="faclinktreeebook"
-                                    placeholder=" ">
-                                <label for="linktree">Linktree</label>
+                    <h4 class="pt-4"> Site ADM </h4>
+                    <hr>
+                    <div class="row d-flex">
+                        <div class="col-4">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="link_site_adm" id="link_site_adm"
+                                        placeholder=" ">
+                                    <label for="link_site_adm">Link Painel ADM</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <textarea class="form-control" v-model="info_adicionais" placeholder=" "
-                                    id="info_adicionais" style="height: 100px"></textarea>
-                                <label for="info_adicionais">Informações adicionais</label>
+                        <div class="col-4">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="usuario_site_adm"
+                                        id="usuario_site_adm" placeholder=" ">
+                                    <label for="usuario_site_adm">Usuário</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <h4 class="d-flex justify-content-between pt-4"> Informações de Domínio <h6 class="text-success">
-                        Vencimento do Domínio: {{ vencimento_dominio }}</h6>
-                </h4>
-                <hr>
-                <div class="row d-flex">
-                    <div class="col-4">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="registro_dominio" id="registro_dominio"
-                                    placeholder=" ">
-                                <label for="registro_dominio">Local de Registro de Domínio</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="usuario_dominio" id="usuario_dominio"
-                                    placeholder=" ">
-                                <label for="usuario_dominio">Usuário</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="senha_dominio" id="senha_dominio"
-                                    placeholder=" ">
-                                <label for="senha_dominio">Senha</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <h4 class="d-flex justify-content-between pt-4"> Informações de Hospedagem <h6 class="text-success">
-                        Vencimento da Hospedagem: {{ vencimento_hospedagem }}</h6>
-                </h4>
-                <hr>
-                <div class="row d-flex">
-                    <div class="col-4">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="hospedagem" id="hospedagem"
-                                    placeholder=" ">
-                                <label for="hospedagem">Local de Registro de Hospedagem</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="usuario_hospedagem"
-                                    id="usuario_hospedagem" placeholder=" ">
-                                <label for="usuario_hospedagem">Usuário</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="senha_hospedagem" id="senha_hospedagem"
-                                    placeholder=" ">
-                                <label for="senha_hospedagem">Senha</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row d-flex">
-                    <div class="col-6">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="dns_primario" id="dns_primario"
-                                    placeholder=" ">
-                                <label for="dns_primario">DNS Primario</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="dns_secundario" id="dns_secundario"
-                                    placeholder=" ">
-                                <label for="dns_secundario">DNS Secundaário</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row d-flex">
-                    <div class="col-4">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="ftp" id="ftp" placeholder=" ">
-                                <label for="ftp">FTP Url</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="usuario_ftp" id="usuario_ftp"
-                                    placeholder=" ">
-                                <label for="usuario_ftp">Usuário</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="senha_ftp" id="senha_ftp"
-                                    placeholder=" ">
-                                <label for="senha_ftp">Senha</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <h4 class="pt-4"> Site ADM </h4>
-                <hr>
-                <div class="row d-flex">
-                    <div class="col-4">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="link_site_adm" id="link_site_adm"
-                                    placeholder=" ">
-                                <label for="link_site_adm">Link Painel ADM</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="usuario_site_adm" id="usuario_site_adm"
-                                    placeholder=" ">
-                                <label for="usuario_site_adm">Usuário</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="form-floating pb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" v-model="senha_site_adm" id="senha_site_adm"
-                                    placeholder=" ">
-                                <label for="senha_site_adm">Senha</label>
+                        <div class="col-4">
+                            <div class="form-floating pb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" v-model="senha_site_adm" id="senha_site_adm"
+                                        placeholder=" ">
+                                    <label for="senha_site_adm">Senha</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -342,6 +346,8 @@
 export default {
     data() {
         return {
+
+            // Site
             sites: [],
             nome: '',
             sobrenome: '',
@@ -378,6 +384,15 @@ export default {
             usuario_site_adm: '',
             senha_site_adm: '',
             retorno: '',
+
+            // Cliente
+            nome: '',
+            sobrenome: '',
+            email: '',
+            cpf_cnpj: '',
+            telefone: '',
+            endereco_id: ''
+
         };
     },
     watch: {
@@ -394,6 +409,7 @@ export default {
     },
     props: [
         'token_csrf',
+        'acao',
         'id'
     ],
     methods: {

@@ -36,7 +36,11 @@ app.component('table-component', TableComponent);
 import DeleteComponent from './components/DeleteComponent.vue';
 app.component('delete-component', DeleteComponent);
 
-// app.component('login-component', require('./components/LoginComponent.vue').default); ********* Exemplo que não funciona *********
+import PainelComponent from './Pages/Painel/Index.vue';
+app.component('painel-component', PainelComponent);
+
+import ListarClientesComponent from './Pages/ClienteListar/Index.vue';
+app.component('cliente-listar-component', ListarClientesComponent);
 
 
 /**

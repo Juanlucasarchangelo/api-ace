@@ -6,20 +6,20 @@
             </th>
         </thead>
         <tbody>
-            <tr v-if="sites && sites.mensagem" v-for="site in sites.mensagem">
+            <tr v-if="informacoes && informacoes.mensagem" v-for="informacoes in informacoes.mensagem">
                 <td class="row d-flex justify-content-between">
-                    <span>{{ `${site.responsavel} ${site.sobrenome}` }}</span>
-                    <span>{{ site.email }}</span>
+                    <span>{{ `${informacoes.responsavel} ${informacoes.sobrenome}` }}</span>
+                    <span>{{ informacoes.email }}</span>
                 </td>
-                <td>{{ site.vencimento_hospedagem }}</td>
-                <td>{{ site.vencimento_dominio }}</td>
-                <td><a :href="'https://' + site.dominio" target="_blank">{{ site.dominio }}</a></td>
+                <td>{{ informacoes.vencimento_hospedagem }}</td>
+                <td>{{ informacoes.vencimento_dominio }}</td>
+                <td><a :href="'https://' + informacoes.dominio" target="_blank">{{ informacoes.dominio }}</a></td>
                 <td>
-                    <button type="button" class="btn btn-outline-info me-3" @click="getId(site.id)"
+                    <button type="button" class="btn btn-outline-info me-3" @click="getId(informacoes.id)"
                         data-bs-toggle="modal" data-bs-target="#editar">
                         <i class="bi bi-pencil-square"></i>
                     </button>
-                    <button type="button" class="btn btn-outline-danger" @click="getId(site.id)" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-outline-danger" @click="getId(informacoes.id)" data-bs-toggle="modal"
                         data-bs-target="#excluir">
                         <i class="bi bi-trash"></i>
                     </button>
@@ -63,33 +63,15 @@
 export default {
     data() {
         return {
-            sites: [],
             id: '',
             errors: []
         }
     },
-    mounted() {
-        this.getSitesClientes()
-    },
     props: [
         'colunas',
-        'token_csrf'
-    ],
-    methods: {
-        getSitesClientes() {
-            let url = '/api/listar/site'
-
-            axios.get(url)
-                .then(response => {
-                    this.sites = response.data;
-                })
-                .catch(errors => {
-                    console.log(errors);
-                });
-        },
-        getId(id) {
-            this.id = id
-        }
-    }
+        'token_csrf',
+        'informacoes',
+        'linhas'
+    ]
 }
 </script>

@@ -24,12 +24,12 @@ export default {
         },
         timeout: {
             type: Number,
-            default: 4000 // Tempo padrão: 5 segundos
+            default: 4000 
         }
     },
     data() {
         return {
-            showAlert: false // Inicialmente, não mostra o alerta
+            showAlert: false
         };
     },
     computed: {
@@ -53,7 +53,6 @@ export default {
         }
     },
     mounted() {
-        // Garante que o alerta não apareça sem ação válida
         if (this.acao) {
             this.showAlert = true;
             this.startTimeout();

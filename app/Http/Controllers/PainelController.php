@@ -26,10 +26,6 @@ class PainelController extends Controller
      */
     public function index()
     {
-        $sites = Site::all();
-        $clientes = Cliente::all();
-        $resumos = Resumo::all();
-
-        return view('painel', ['sites' => $sites, 'clientes' => $clientes, 'resumos' => $resumos]);
+        return view('painel');
     }
 }
