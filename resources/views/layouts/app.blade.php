@@ -26,7 +26,7 @@
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm mb-3">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/painel') }}">
-                        <img src="{{ asset('build/assets/img/Logo preto.png') }}" height="40" alt="">
+                        <img src="{{ asset('assets/images/logos/Logo preto.png') }}" height="40" alt="">
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -38,11 +38,36 @@
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('cadastrar-site') }}">Cadastrar Site</a>
+                                <a class="nav-link" href="{{ route('painel') }}">Dashboard</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('cadastrar-cliente') }}">Cadastrar Cliente</a>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Site
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('cadastrar-site') }}">
+                                        Cadastrar Site
+                                    </a>
+                                </div>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Clientes
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('cadastrar-cliente') }}">
+                                        Cadastrar Clientes
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('listar-cliente') }}">
+                                        Listar Clientes
+                                    </a>
+                                </div>
+                            </li>
+
                         </ul>
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ms-auto">
@@ -61,22 +86,32 @@
                                 @endif
                             @else
                                 <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }}
-                                    </a>
+                                    <div class="row d-flex">
+                                        <div class="col-2">
+                                            {{-- <a class="navbar-brand" href="#"> --}}
+                                                <img src="{{ asset('assets/images/icons/user.png') }}" height="40"
+                                                    alt="">
+                                            {{-- </a> --}}
+                                        </div>
+                                        <div class="col-auto">
+                                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#"
+                                                role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false" v-pre>
+                                                {{ Auth::user()->name }}
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                                    {{ __('Logout') }}
+                                                </a>
 
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
-                                            @csrf
-                                        </form>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                    class="d-none">
+                                                    @csrf
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </li>
                             @endguest
