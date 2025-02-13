@@ -1,8 +1,5 @@
 <template>
     <div class="container">
-        <h2 class="pb-3">
-            Dashboard
-        </h2>
         <div class="row d-flex justify-content-between pb-4">
             <div class="col-4">
                 <div class="card">

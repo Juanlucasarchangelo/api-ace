@@ -7,7 +7,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: url('assets/images/background.jpg');
+            background-image: url('assets/images/background.webp');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center bottom;
