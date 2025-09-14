@@ -66,7 +66,7 @@ flowchart TD
     A[Frontend] --> B[Backend/API]
     B --> C[(Banco de Dados)]
     B --> D[Google Drive API]
-    A --> E[Autenticação e Autorização (JWT / OAuth2)]
+    A --> E[Autenticacao e Autorizacao (JWT / OAuth2)]
 ```
 
 ---
