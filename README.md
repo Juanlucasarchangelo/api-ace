@@ -59,7 +59,7 @@ O sistema permite armazenar informações sensíveis de forma segura, além de i
 
 ---
 
-## 🏗 Arquitetura do Sistema
+## 🏗 Arquitetura do Sistemaa
 
 ```mermaid
 flowchart TD
