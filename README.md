@@ -63,10 +63,10 @@ O sistema permite armazenar informações sensíveis de forma segura, além de i
 
 ```mermaid
 flowchart TD
-    A[Frontend] --> B[Backend/API]
-    B --> C[(Banco de Dados)]
-    B --> D[Google Drive API]
-    A --> E[Autenticacao e Autorizacao (JWT / OAuth2)]
+    A["Frontend"] --> B["Backend/API"]
+    B --> C["Banco de Dados"]
+    B --> D["Google Drive API"]
+    A --> E["Autenticacao e Autorizacao (JWT / OAuth2)"]
 ```
 
 ---
