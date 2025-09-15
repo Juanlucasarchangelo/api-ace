@@ -14,7 +14,7 @@ class ClienteController extends Controller
     public function index()
     {
         try {
-            $clientes = Cliente::with('enderecos:id,endereco,cidade,bairro,numero,complemento,cep')
+            $clientes = Cliente::with('endereco:id,endereco,cidade,bairro,numero,complemento,cep', 'site:id,dominio')
                 ->get()
                 ->makeHidden(['deleted_at', 'created_at', 'updated_at']);
 
@@ -22,20 +22,21 @@ class ClienteController extends Controller
                 return [
                     'id' => $cliente->id,
                     'nome' => $cliente->nome,
+                    'dominio' => $cliente->site->dominio,
                     'sobrenome' => $cliente->sobrenome,
                     'email' => $cliente->email,
                     'cpf_cnpj' => $cliente->cpf_cnpj,
                     'telefone' => $cliente->telefone,
-                    'endereco' => $cliente->enderecos->endereco,
-                    'cidade' => $cliente->enderecos->cidade,
-                    'bairro' =>  $cliente->enderecos->bairro,
-                    'numero' => $cliente->enderecos->numero,
-                    'complemeto' => $cliente->enderecos->complemento,
-                    'cep' => $cliente->enderecos->cep,
+                    'endereco' => $cliente->endereco->endereco,
+                    'cidade' => $cliente->endereco->cidade,
+                    'bairro' =>  $cliente->endereco->bairro,
+                    'numero' => $cliente->endereco->numero,
+                    'complemeto' => $cliente->endereco->complemento,
+                    'cep' => $cliente->endereco->cep,
                 ];
             });
 
-            return response()->json(['mensagem' => $listar], 200);
+            return response()->json($listar);
         } catch (\Exception $e) {
             return response()->json(['mensagem' => 'Erro ao processar a requisição.', 'erro' => $e->getMessage()], 500);
         }

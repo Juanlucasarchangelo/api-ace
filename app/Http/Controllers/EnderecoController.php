@@ -28,7 +28,7 @@ class EnderecoController extends Controller
                 ];
             });
 
-            return response()->json(['mensagem' => $listar], 200);
+            return response()->json($listar);
         } catch (\Exception $e) {
             return response()->json(['mensagem' => 'Erro ao processar a requisição.', 'erro' => $e->getMessage()], 500);
         }

@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('email');
             $table->string('cpf_cnpj');
             $table->string('telefone');
-            $table->foreignId('enderecos_id')->constrained();
+            $table->foreignId('site_id')->constrained();
+            $table->foreignId('endereco_id')->constrained();            
             $table->softDeletes();
             $table->timestamps();
         });

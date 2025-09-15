@@ -31,11 +31,11 @@ class SiteController extends Controller
         }
 
         try {
-            $sites = Site::where('id', $request->id)->with('clientes:id,nome,sobrenome,email,cpf_cnpj,telefone', 'resumos:id,briefing,data_entrega')->first();
+            $sites = Site::where('id', $request->id)->with('cliente:id,nome,sobrenome,email,cpf_cnpj,telefone')->first();
 
             return response()->json(['tipo' => 'sucesso', 'mensagem' => 'Registro encontrado.', 'info' => $sites], 200);
         } catch (\Exception $e) {
-            return response()->json(['tipo' => 'erro', 'mensagem' => 'Erro ao buscar sites por ID.', 'erro' => $e->getMessage()], 500);
+            return response()->json(['mensagem' => 'Erro ao buscar sites por ID.', 'erro' => $e->getMessage()], 500);
         }
     }
 
@@ -45,17 +45,18 @@ class SiteController extends Controller
     public function index()
     {
         try {
-            $sites = Site::with('clientes:id,nome,sobrenome,email,cpf_cnpj,telefone', 'resumos:id,briefing,data_entrega')
+            $sites = Site::with('cliente:id,nome,sobrenome,email,cpf_cnpj,telefone')
                 ->get()
                 ->makeHidden(['deleted_at', 'created_at', 'updated_at']);
+
+                dd($sites);
 
             $listar = $sites->map(function ($site) {
                 return [
                     'id' => $site->id,
-                    'briefing' => $site->resumos->briefing,
-                    'data_entrega' => $site->resumos->data_entrega,
-                    'responsavel' => $site->clientes->nome,
-                    'sobrenome' => $site->clientes->sobrenome,
+                    'resumo' => $site->resumo,
+                    'responsavel' => $site->cliente->nome,
+                    'sobrenome' => $site->cliente->sobrenome,
                     'email' => $site->clientes->email,
                     'cpf_cnpj' => $site->clientes->cpf_cnpj,
                     'telefone' => $site->clientes->telefone,
@@ -89,9 +90,9 @@ class SiteController extends Controller
                 ];
             });
 
-            return response()->json(['mensagem' => $listar], 200);
+            return response()->json($listar);
         } catch (\Exception $e) {
-            return response()->json(['mensagem' => 'Erro ao processar a requisição.', 'erro' => $e->getMessage()], 500);
+            return response()->json(['mensagem' => 'Erro ao processar a requisição na função index.', 'erro' => $e->getMessage()], 500);
         }
     }
 
@@ -117,14 +118,9 @@ class SiteController extends Controller
         }
 
         try {
-            $resumo = Resumo::create([
-                'briefing' => $request->briefing,
-                'data_entrega' => $request->data_entrega
-            ]);
-
             Site::create([
                 'clientes_id' => $request->clientes_id,
-                'resumos_id' => $resumo->id,
+                'resumo' => $request->resumo,
                 'dominio' => $request->dominio,
                 'acesso_email' => $request->acesso_email,
                 'email_profissional' => $request->email_profissional,
