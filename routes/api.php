@@ -12,25 +12,21 @@ Route::get('/user', function (Request $request) {
 
 Route::prefix('listar')->group(function () {
     Route::get('/clientes', [ClienteController::class, 'index']);
-    Route::get('/enderecos', [EnderecoController::class, 'index']);
     Route::get('/sites', [SiteController::class, 'index']);
     Route::get('/site-id', [SiteController::class, 'getSitesById']);
 });
 
 Route::prefix('cadastrar')->group(function () {
     Route::post('/cliente', [ClienteController::class, 'create']);
-    Route::post('/endereco', [EnderecoController::class, 'create']);
     Route::post('/site', [SiteController::class, 'create']);
 });
 
 Route::prefix('editar')->group(function () {
     Route::post('/cliente', [ClienteController::class, 'create']);
-    Route::post('/endereco', [EnderecoController::class, 'create']);
     Route::post('/site', [SiteController::class, 'update']);
 });
 
 Route::prefix('excluir')->group(function () {
     Route::post('/cliente', [ClienteController::class, 'destroy']);
-    Route::post('/endereco', [EnderecoController::class, 'destroy']);
     Route::post('/site', [SiteController::class, 'destroy']);
 });

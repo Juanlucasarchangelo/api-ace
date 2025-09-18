@@ -31,10 +31,12 @@ class SiteController extends Controller
             return response()->json(['mensagem' => 'Parâmetros inválidos na requisição.', 'erros' => $validator->errors()->all(), 'info' => ''], 422);
         }
 
-        try {
-            $sites = Site::where('id', $request->id)->with('cliente')->first();
+        try {;
+            $listar = Site::where('id', $request->id)->with('cliente')
+                ->first()
+                ->makeHidden(['deleted_at', 'created_at', 'updated_at']);
 
-            return response()->json(['mensagem' => 'Registro encontrado.', 'info' => $sites], 200);
+            return response()->json(['mensagem' => 'Registro encontrado.', 'erros' => '', 'info' => $listar], 200);
         } catch (\Exception $e) {
             return response()->json(['mensagem' => 'Erro ao buscar sites por ID.', 'erros' => $e->getMessage(), 'info' => ''], 500);
         }
@@ -50,10 +52,10 @@ class SiteController extends Controller
                 ->get()
                 ->makeHidden(['deleted_at', 'created_at', 'updated_at']);
 
-
             $listar = $sites->map(function ($site) {
                 return [
                     'id' => $site->id,
+                    'cliente' => $site->cliente->nome,
                     'resumo' => $site->resumo,
                     'responsavel' => $site->cliente->nome,
                     'sobrenome' => $site->cliente->sobrenome,
@@ -104,7 +106,7 @@ class SiteController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'clientes_id' => 'required',
+                'cliente_id' => 'required',
                 'dominio' => 'required',
                 'hospedagem' => 'required'
             ],
@@ -114,12 +116,12 @@ class SiteController extends Controller
         );
 
         if ($validator->fails()) {
-            return response()->json(['erros' => $validator->errors()->all()], 422);
+            return response()->json(['mensagem' => 'Parâmetros inválidos na requisição.', 'erros' => $validator->errors()->all(), 'info' => ''], 422);
         }
 
         try {
             Site::create([
-                'clientes_id' => $request->clientes_id,
+                'cliente_id' => $request->cliente_id,
                 'resumo' => $request->resumo,
                 'dominio' => $request->dominio,
                 'acesso_email' => $request->acesso_email,
@@ -257,6 +259,6 @@ class SiteController extends Controller
             return response()->json(['mensagem' => 'Id do site não encontrado.', 'erros' => '', 'info' => '']);
         }
 
-        return response()->json(['mensagem' => 'Site atualizado com sucesso!', 'erros' => '', 'info' => '']);
+        return response()->json(['mensagem' => 'Site excluido com sucesso!', 'erros' => '', 'info' => '']);
     }
 }

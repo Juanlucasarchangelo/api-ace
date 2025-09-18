@@ -60,7 +60,7 @@ class ClienteController extends Controller
         );
 
         if ($validator->fails()) {
-            return response()->json(['erros' => $validator->errors()->all()], 422);
+            return response()->json(['mensagem' => 'Parâmetros inválidos na requisição.', 'erros' => $validator->errors()->all(), 'info' => ''], 422);
         }
 
         try {
@@ -78,9 +78,9 @@ class ClienteController extends Controller
                 'cep' => $request->cep,
             ]);
 
-            return response()->json(['mensagem' => 'Registro criado com sucesso.'], 200);
+            return response()->json(['mensagem' => 'Registro criado com sucesso.', 'erros' => '', 'info' => ''], 200);
         } catch (\Exception $e) {
-            return response()->json(['mensagem' => 'Erro ao processar a requisição.', 'erro' => $e->getMessage()], 500);
+            return response()->json(['mensagem' => 'Erro ao processar a requisição.', 'erros' => $e->getMessage(), 'info' => ''], 500);
         }
     }
 
