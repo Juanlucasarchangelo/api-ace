@@ -10,6 +10,6 @@ class Site extends Model
 
     public function cliente()
     {
-        return $this->hasOne(Cliente::class, 'site_id', 'id');
+        return $this->belongsTo(Cliente::class, 'cliente_id', 'id');
     }
 }

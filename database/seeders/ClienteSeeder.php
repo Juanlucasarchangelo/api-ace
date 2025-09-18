@@ -20,8 +20,12 @@ class ClienteSeeder extends Seeder
             'email' => 'jlarchangelo@outlook.com',
             'cpf_cnpj' => '45691644807',
             'telefone' => '19987720695',
-            'endereco_id' => 1,
-            'site_id' => 1
+            'endereco' => 'Jose Timoteo da Silva',
+            'cidade' => 'Osasco',
+            'bairro' => 'São Pedro',
+            'numero' => '394',
+            'complemento' => 'Apto 108, Torre B',
+            'cep' => '06172220',
         ]);
     }
 }

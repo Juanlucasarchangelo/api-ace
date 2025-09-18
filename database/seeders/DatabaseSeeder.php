@@ -21,9 +21,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-            EnderecoSeeder::class,
-            SiteSeeder::class,
             ClienteSeeder::class,
+            SiteSeeder::class
         ]);
     }
 }

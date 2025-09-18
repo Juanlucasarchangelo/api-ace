@@ -15,6 +15,7 @@ class SiteSeeder extends Seeder
     {
         Site::create([
             'id' => 1,
+            'cliente_id' => 1,
             'resumo' => 'Este site é um E-commerce e precisa vender urgentemente.',
             'dominio' => 'archania.com.br'
         ]);

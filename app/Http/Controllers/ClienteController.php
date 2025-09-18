@@ -14,7 +14,7 @@ class ClienteController extends Controller
     public function index()
     {
         try {
-            $clientes = Cliente::with('endereco:id,endereco,cidade,bairro,numero,complemento,cep', 'site:id,dominio')
+            $clientes = Cliente::with('site')
                 ->get()
                 ->makeHidden(['deleted_at', 'created_at', 'updated_at']);
 
@@ -22,17 +22,17 @@ class ClienteController extends Controller
                 return [
                     'id' => $cliente->id,
                     'nome' => $cliente->nome,
-                    'dominio' => $cliente->site->dominio,
                     'sobrenome' => $cliente->sobrenome,
                     'email' => $cliente->email,
                     'cpf_cnpj' => $cliente->cpf_cnpj,
                     'telefone' => $cliente->telefone,
-                    'endereco' => $cliente->endereco->endereco,
-                    'cidade' => $cliente->endereco->cidade,
-                    'bairro' =>  $cliente->endereco->bairro,
-                    'numero' => $cliente->endereco->numero,
-                    'complemeto' => $cliente->endereco->complemento,
-                    'cep' => $cliente->endereco->cep,
+                    'endereco' => $cliente->endereco,
+                    'cidade' => $cliente->cidade,
+                    'bairro' =>  $cliente->bairro,
+                    'numero' => $cliente->numero,
+                    'complemeto' => $cliente->complemento,
+                    'cep' => $cliente->cep,
+                    'sites' => $cliente->site
                 ];
             });
 
@@ -53,9 +53,6 @@ class ClienteController extends Controller
                 'nome' => 'required',
                 'sobrenome' => 'required',
                 'email' => 'required',
-                'cpf_cnpj' => 'required',
-                'telefone' => 'required',
-                'enderecos_id' => 'required',
             ],
             [
                 'required' => 'O campo :attribute é obrigatório.'
@@ -73,7 +70,12 @@ class ClienteController extends Controller
                 'email' => $request->email,
                 'cpf_cnpj' => $request->cpf_cnpj,
                 'telefone' => $request->telefone,
-                'enderecos_id' => $request->enderecos_id,
+                'endereco' => $request->endereco,
+                'cidade' => $request->cidade,
+                'bairro' => $request->bairro,
+                'numero' => $request->numero,
+                'complemento' => $request->complemento,
+                'cep' => $request->cep,
             ]);
 
             return response()->json(['mensagem' => 'Registro criado com sucesso.'], 200);

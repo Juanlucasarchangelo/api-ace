@@ -16,10 +16,14 @@ return new class extends Migration
             $table->string('nome');
             $table->string('sobrenome');
             $table->string('email');
-            $table->string('cpf_cnpj');
-            $table->string('telefone');
-            $table->foreignId('site_id')->constrained();
-            $table->foreignId('endereco_id')->constrained();            
+            $table->string('cpf_cnpj')->nullable();
+            $table->string('telefone')->nullable();
+            $table->string('endereco')->nullable();
+            $table->string('cidade')->nullable();
+            $table->string('bairro')->nullable();
+            $table->string('numero')->nullable();
+            $table->string('complemento')->nullable();
+            $table->string('cep')->nullable();           
             $table->softDeletes();
             $table->timestamps();
         });

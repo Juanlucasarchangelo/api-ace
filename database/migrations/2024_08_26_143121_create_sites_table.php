@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('sites', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('cliente_id')->constrained();
             $table->longText('resumo')->nullable();
             $table->string('dominio')->nullable();
             $table->string('acesso_email')->nullable();
