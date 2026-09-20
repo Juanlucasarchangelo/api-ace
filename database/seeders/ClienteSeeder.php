@@ -13,19 +13,20 @@ class ClienteSeeder extends Seeder
      */
     public function run(): void
     {
-        Cliente::create([
-            'id' => 1,
-            'nome' => 'Juan Lucas Alves',
-            'sobrenome' => 'Archangelo',
-            'email' => 'jlarchangelo@outlook.com',
-            'cpf_cnpj' => '45691644807',
-            'telefone' => '19987720695',
-            'endereco' => 'Jose Timoteo da Silva',
-            'cidade' => 'Osasco',
-            'bairro' => 'São Pedro',
-            'numero' => '394',
-            'complemento' => 'Apto 108, Torre B',
-            'cep' => '06172220',
-        ]);
+        for ($i = 1; $i <= 10; $i++) {
+            Cliente::create([
+                'nome' => fake()->firstName(),
+                'sobrenome' => fake()->lastName(),
+                'email' => fake()->unique()->safeEmail(),
+                'cpf_cnpj' => fake()->unique()->numerify('###########'),
+                'telefone' => fake()->numerify('119########'),
+                'endereco' => fake()->streetName(),
+                'cidade' => fake()->city(),
+                'bairro' => fake()->citySuffix(),
+                'numero' => fake()->buildingNumber(),
+                'complemento' => fake()->optional()->secondaryAddress(),
+                'cep' => fake()->postcode(),
+            ]);
+        }
     }
 }

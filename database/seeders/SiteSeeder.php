@@ -13,11 +13,12 @@ class SiteSeeder extends Seeder
      */
     public function run(): void
     {
-        Site::create([
-            'id' => 1,
-            'cliente_id' => 1,
-            'resumo' => 'Este site é um E-commerce e precisa vender urgentemente.',
-            'dominio' => 'archania.com.br'
-        ]);
+        for ($i = 1; $i <= 10; $i++) {
+            Site::create([
+                'cliente_id' => 1,
+                'resumo' => fake()->sentence(),
+                'dominio' => fake()->unique()->domainName(),
+            ]);
+        }
     }
 }
